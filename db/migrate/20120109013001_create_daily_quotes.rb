@@ -1,21 +1,21 @@
 class CreateDailyQuotes < ActiveRecord::Migration
 
   def self.up
-    create_table :daily_quotes do |t|
-      t.integer :month
-      t.integer :day
-      t.string :theme
-      t.text :quote
-      t.string :author
-      t.string :source
-      t.integer :position
+#     create_table :daily_quotes do |t|
+#       t.integer :month
+#       t.integer :day
+#       t.string :theme
+#       t.text :quote
+#       t.string :author
+#       t.string :source
+#       t.integer :position
 
-      t.timestamps
-    end
+#       t.timestamps
+#     end
 
-    add_index :daily_quotes, :id
+#     add_index :daily_quotes, :id
 
-    load(Rails.root.join('db', 'seeds', 'daily_quotes.rb'))
+    #load(Rails.root.join('db', 'seeds', 'daily_quotes.rb'))
   end
 
   def self.down
