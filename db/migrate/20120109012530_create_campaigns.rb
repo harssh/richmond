@@ -1,15 +1,15 @@
 class CreateCampaigns < ActiveRecord::Migration
   
   def self.up
-    create_table :campaigns do |t|
-      t.string :subject, :mailchimp_campaign_id, :mailchimp_list_id, :mailchimp_template_id, :from_email, :from_name, :to_name
-      t.text :body
-      t.datetime :sent_at, :scheduled_at
-      t.boolean :auto_tweet, :default => false
-      t.timestamps
-    end
+#     create_table :campaigns do |t|
+#       t.string :subject, :mailchimp_campaign_id, :mailchimp_list_id, :mailchimp_template_id, :from_email, :from_name, :to_name
+#       t.text :body
+#       t.datetime :sent_at, :scheduled_at
+#       t.boolean :auto_tweet, :default => false
+#       t.timestamps
+#     end
 
-    add_index :campaigns, :id
+#     add_index :campaigns, :id
 
     # load(Rails.root.join('db', 'seeds', 'campaigns.rb'))
   end
