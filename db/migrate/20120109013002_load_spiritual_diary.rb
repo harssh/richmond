@@ -1,7 +1,7 @@
 class LoadSpiritualDiary < ActiveRecord::Migration
   def self.up
-    # down
-    # load_diary( true )
+     down
+     load_diary( true )
   end
 
   def self.down
