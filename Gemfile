@@ -116,3 +116,6 @@ gem 'seo_meta'
 gem 'fog'
 
 # END USER DEFINED
+
+gem 'refinerycms-daily_quotes', '1.0', :path => 'vendor/engines'
+
