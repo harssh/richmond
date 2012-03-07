@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20120109013002) do
     t.datetime "updated_at"
   end
 
+  add_index "news_item_translations", ["locale"], :name => "index_news_item_translations_on_locale"
   add_index "news_item_translations", ["news_item_id"], :name => "index_news_item_translations_on_news_item_id"
 
   create_table "news_items", :force => true do |t|
@@ -183,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20120109013002) do
     t.datetime "updated_at"
   end
 
+  add_index "page_part_translations", ["locale"], :name => "index_page_part_translations_on_locale"
   add_index "page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
 
   create_table "page_parts", :force => true do |t|
@@ -206,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20120109013002) do
     t.datetime "updated_at"
   end
 
+  add_index "page_translations", ["locale"], :name => "index_page_translations_on_locale"
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
