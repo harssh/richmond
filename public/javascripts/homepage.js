@@ -1,4 +1,4 @@
-<!--- Cross Browser Fader Script --->
+<!--- Cross Browser Fader Script NEW --->
 <script type="text/javascript">
 <!--
 // Set the slideshow speed (in milliseconds)
