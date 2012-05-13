@@ -2,7 +2,7 @@
 <script type="text/javascript">
 <!--
 // Set the slideshow speed (in milliseconds)
-var SlideShowSpeed = 3000;
+var SlideShowSpeed = 7000;
 // Set the duration of crossfade (in seconds)
 var CrossFadeDuration = 4;
 var Picture = new Array(); // don't change this
@@ -12,8 +12,6 @@ Picture[1]  = '/images/hp1.jpg';
 Picture[2]  = '/images/hp2.jpg';
 Picture[3]  = '/images/hp3.jpg';
 Picture[4]  = '/images/hp4.jpg';
-Picture[5]  = '/images/hp5.jpg';
-Picture[6]  = '/images/hp6.jpg';
 
 //don't change these
 var tss;
@@ -43,5 +41,4 @@ tss = setTimeout('runSlideShow()', SlideShowSpeed);
 <!---Ends the Fader--->
 
 %body{:onload => 'runSlideShow();'}
-=render :partial =>"/shared/content_page"
-
+= render :partial => "/shared/content_page"
