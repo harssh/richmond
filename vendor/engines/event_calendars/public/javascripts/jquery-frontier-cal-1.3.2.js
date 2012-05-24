@@ -3065,6 +3065,104 @@
 		modal.dialog('open');				
 		
 	};
+
+        /** Majozi usage changes
+         *
+        */
+
+
+        /** loads iCal data from a data block
+	 * @param cal - Calendar object - A Frontier Calendar.
+	 */
+        Calendar.loadICalData = function(cal, data) {
+                icalParser.clear();
+                icalParser.parseIcal(data);
+                /*				
+                All the vevent elements
+                alert("Events: " + icalParser.ical.events.length);
+                All the vtodo elements
+                alert("VToDos: " + icalParser.ical.todos.length);
+                All the journal elements
+                alert("Journals: " + icalParser.ical.journals.length);
+                All the freebusy elements
+                alert("Freebusy: " + icalParser.ical.freebusys.length);
+                */
+                if(icalParser.ical.events.length > 0){
+                        var event; var summary;
+                        var startYear; var startMonth; var startDay;
+                        var startHour; var startMin; var startSec;
+                        var endYear; var endMonth; var endDay;
+                        var endHour; var endMin; var endSec;
+                        var startDt; var endDt;
+                        for(var i=0; i<icalParser.ical.events.length; i++){
+                                event = icalParser.ical.events[i]; 
+                                summary = ((event.summary != null) ? event.summary.value : "");
+                                // Example iCal date time 20100617T154500Z
+                                // strip any preceeding 0's
+                                startYear = ((event.dtstart != null) ? event.dtstart.value : "").substring(0,4);
+                                startMonth = ((event.dtstart != null) ? event.dtstart.value : "").substring(4,6).replace(/^[0]+/g,"");
+                                startDay = ((event.dtstart != null) ? event.dtstart.value : "").substring(6,8).replace(/^[0]+/g,"");
+                                startHour = ((event.dtstart != null) ? event.dtstart.value : "").substring(9,11).replace(/^[0]+/g,"");
+                                startMin = ((event.dtstart != null) ? event.dtstart.value : "").substring(11,13).replace(/^[0]+/g,"");
+                                startSec = ((event.dtstart != null) ? event.dtstart.value : "").substring(13,15).replace(/^[0]+/g,"");
+                                if(startHour == ""){ startHour = "0"; }						
+                                if(startMin == ""){ startMin = "0"; }
+                                if(startSec == ""){ startSec = "0"; }
+                                //alert("Year: " + startYear + ", Month: " + startMonth + ", Day: " + startDay + ", Hour: " + startHour + ", Min: " + startMin + ", Sec: " + startSec);
+                                endYear = ((event.dtend != null) ? event.dtend.value : "").substring(0,4);
+                                endMonth = ((event.dtend != null) ? event.dtend.value : "").substring(4,6).replace(/^[0]+/g,"");
+                                endDay = ((event.dtend != null) ? event.dtend.value : "").substring(6,8).replace(/^[0]+/g,"");
+                                endHour = ((event.dtend != null) ? event.dtend.value : "").substring(9,11).replace(/^[0]+/g,"");
+                                endMin = ((event.dtend != null) ? event.dtend.value : "").substring(11,13).replace(/^[0]+/g,"");
+                                endSec = ((event.dtend != null) ? event.dtend.value : "").substring(13,15).replace(/^[0]+/g,"");
+                                if(endHour == ""){ endHour = "0"; }						
+                                if(endMin == ""){ endMin = "0"; }
+                                if(endSec == ""){ endSec = "0"; }						
+                                startDt = new Date(parseInt(startYear),parseInt(startMonth)-1,parseInt(startDay),parseInt(startHour)-1,parseInt(startMin),parseInt(startSec),0);
+                                endDt = new Date(parseInt(endYear),parseInt(endMonth)-1,parseInt(endDay),parseInt(endHour)-1,parseInt(endMin),parseInt(endSec),0);
+                                if(DateUtil.secondsDifferenceDirection(startDt,endDt) >= 0){
+                                        // continue if start date is before or on end date
+                                        var hashData = new Hashtable();
+                                        hashData.put('UID',((event.uid != null) ? event.uid.value : ""));
+                                        hashData.put('SUMMARY',((event.summary != null) ? event.summary.value : ""));
+                                        hashData.put('DTSTART',((event.dtstart != null) ? event.dtstart.value : ""));
+                                        hashData.put('DTEND',((event.dtend != null) ? event.dtend.value : ""));
+                                        hashData.put('CLASS',((event.classification != null) ? event.classification.value : ""));
+                                        hashData.put('CREATED',((event.created != null) ? event.created.value : ""));
+                                        hashData.put('DESCRIPTION',((event.description != null) ? event.description.value : ""));
+                                        hashData.put('GEO',((event.geo != null) ? event.geo.value : ""));
+                                        hashData.put('LAST-MODIFIED',((event.lastmod != null) ? event.lastmod.value : ""));
+                                        hashData.put('LOCATION',((event.location != null) ? event.location.value : ""));
+                                        hashData.put('ORGANIZER',((event.organizer != null) ? event.organizer.value : ""));
+                                        hashData.put('PRIORITY',((event.priority != null) ? event.priority.value : ""));
+                                        hashData.put('DTSTAMP',((event.dtstamp != null) ? event.dtstamp.value : ""));
+                                        hashData.put('SEQUENCE',((event.seq != null) ? event.seq.value : ""));
+                                        hashData.put('STATUS',((event.status != null) ? event.status.value : ""));
+                                        hashData.put('TRANSP',((event.transp != null) ? event.transp.value : ""));
+                                        hashData.put('URL',((event.url != null) ? event.url.value : ""));
+                                        hashData.put('RECURRENCE-ID',((event.recurid != null) ? event.recurid.value : ""));
+                                        hashData.put('DURATION',((event.duration != null) ? event.duration.value : ""));
+                                        hashData.put('ATTACH',((event.attach != null) ? event.attach.value : ""));
+                                        hashData.put('ATTENDEE',((event.attendee != null) ? event.attendee.value : ""));
+                                        hashData.put('CATEGORIES',((event.categories != null) ? event.categories.value : ""));
+                                        hashData.put('COMMENT',((event.comment != null) ? event.comment.value : ""));
+                                        hashData.put('CONTACT',((event.contact != null) ? event.contact.value : ""));
+                                        hashData.put('EXDATE',((event.exdate != null) ? event.exdate.value : ""));
+                                        hashData.put('EXRULE',((event.exrule != null) ? event.exrule.value : ""));
+                                        hashData.put('REQUEST-STATUS',((event.rstatus != null) ? event.rstatus.value : ""));
+                                        hashData.put('RELATED',((event.related != null) ? event.related.value : ""));
+                                        hashData.put('RESOURCES',((event.resources != null) ? event.resources.value : ""));
+                                        hashData.put('RDATE',((event.rdate != null) ? event.rdate.value : ""));
+                                        hashData.put('RRULE',((event.rrule != null) ? event.rrule.value : ""));
+                                        hashData.put('X-',((event.xprop != null) ? event.xprop.value : ""));
+                                        var agi = new CalendarAgendaItem(summary,startDt,endDt,false,hashData);
+                                        cal.addAgendaItem(agi);
+                                }			
+                        }
+                }	
+
+        }  // end loadICalData function
+
 	/**
 	 * Loads the iCal calendar data into the calendar.
 	 *
@@ -3090,91 +3188,9 @@
 					alert("iCal load error: Returned data was null or empty string.\n\nSource, " + iCalUrl);
 					return;
 				}
-				icalParser.clear();
-				icalParser.parseIcal(data);
-				/*				
-				All the vevent elements
-				alert("Events: " + icalParser.ical.events.length);
-				All the vtodo elements
-				alert("VToDos: " + icalParser.ical.todos.length);
-				All the journal elements
-				alert("Journals: " + icalParser.ical.journals.length);
-				All the freebusy elements
-				alert("Freebusy: " + icalParser.ical.freebusys.length);
-				*/
-				if(icalParser.ical.events.length > 0){
-					var event; var summary;
-					var startYear; var startMonth; var startDay;
-					var startHour; var startMin; var startSec;
-					var endYear; var endMonth; var endDay;
-					var endHour; var endMin; var endSec;
-					var startDt; var endDt;
-					for(var i=0; i<icalParser.ical.events.length; i++){
-						event = icalParser.ical.events[i]; 
-						summary = ((event.summary != null) ? event.summary.value : "");
-						// Example iCal date time 20100617T154500Z
-						// strip any preceeding 0's
-						startYear = ((event.dtstart != null) ? event.dtstart.value : "").substring(0,4);
-						startMonth = ((event.dtstart != null) ? event.dtstart.value : "").substring(4,6).replace(/^[0]+/g,"");
-						startDay = ((event.dtstart != null) ? event.dtstart.value : "").substring(6,8).replace(/^[0]+/g,"");
-						startHour = ((event.dtstart != null) ? event.dtstart.value : "").substring(9,11).replace(/^[0]+/g,"");
-						startMin = ((event.dtstart != null) ? event.dtstart.value : "").substring(11,13).replace(/^[0]+/g,"");
-						startSec = ((event.dtstart != null) ? event.dtstart.value : "").substring(13,15).replace(/^[0]+/g,"");
-						if(startHour == ""){ startHour = "0"; }						
-						if(startMin == ""){ startMin = "0"; }
-						if(startSec == ""){ startSec = "0"; }
-						//alert("Year: " + startYear + ", Month: " + startMonth + ", Day: " + startDay + ", Hour: " + startHour + ", Min: " + startMin + ", Sec: " + startSec);
-						endYear = ((event.dtend != null) ? event.dtend.value : "").substring(0,4);
-						endMonth = ((event.dtend != null) ? event.dtend.value : "").substring(4,6).replace(/^[0]+/g,"");
-						endDay = ((event.dtend != null) ? event.dtend.value : "").substring(6,8).replace(/^[0]+/g,"");
-						endHour = ((event.dtend != null) ? event.dtend.value : "").substring(9,11).replace(/^[0]+/g,"");
-						endMin = ((event.dtend != null) ? event.dtend.value : "").substring(11,13).replace(/^[0]+/g,"");
-						endSec = ((event.dtend != null) ? event.dtend.value : "").substring(13,15).replace(/^[0]+/g,"");
-						if(endHour == ""){ endHour = "0"; }						
-						if(endMin == ""){ endMin = "0"; }
-						if(endSec == ""){ endSec = "0"; }						
-						startDt = new Date(parseInt(startYear),parseInt(startMonth)-1,parseInt(startDay),parseInt(startHour)-1,parseInt(startMin),parseInt(startSec),0);
-						endDt = new Date(parseInt(endYear),parseInt(endMonth)-1,parseInt(endDay),parseInt(endHour)-1,parseInt(endMin),parseInt(endSec),0);
-						if(DateUtil.secondsDifferenceDirection(startDt,endDt) >= 0){
-							// continue if start date is before or on end date
-							var hashData = new Hashtable();
-							hashData.put('UID',((event.uid != null) ? event.uid.value : ""));
-							hashData.put('SUMMARY',((event.summary != null) ? event.summary.value : ""));
-							hashData.put('DTSTART',((event.dtstart != null) ? event.dtstart.value : ""));
-							hashData.put('DTEND',((event.dtend != null) ? event.dtend.value : ""));
-							hashData.put('CLASS',((event.classification != null) ? event.classification.value : ""));
-							hashData.put('CREATED',((event.created != null) ? event.created.value : ""));
-							hashData.put('DESCRIPTION',((event.description != null) ? event.description.value : ""));
-							hashData.put('GEO',((event.geo != null) ? event.geo.value : ""));
-							hashData.put('LAST-MODIFIED',((event.lastmod != null) ? event.lastmod.value : ""));
-							hashData.put('LOCATION',((event.location != null) ? event.location.value : ""));
-							hashData.put('ORGANIZER',((event.organizer != null) ? event.organizer.value : ""));
-							hashData.put('PRIORITY',((event.priority != null) ? event.priority.value : ""));
-							hashData.put('DTSTAMP',((event.dtstamp != null) ? event.dtstamp.value : ""));
-							hashData.put('SEQUENCE',((event.seq != null) ? event.seq.value : ""));
-							hashData.put('STATUS',((event.status != null) ? event.status.value : ""));
-							hashData.put('TRANSP',((event.transp != null) ? event.transp.value : ""));
-							hashData.put('URL',((event.url != null) ? event.url.value : ""));
-							hashData.put('RECURRENCE-ID',((event.recurid != null) ? event.recurid.value : ""));
-							hashData.put('DURATION',((event.duration != null) ? event.duration.value : ""));
-							hashData.put('ATTACH',((event.attach != null) ? event.attach.value : ""));
-							hashData.put('ATTENDEE',((event.attendee != null) ? event.attendee.value : ""));
-							hashData.put('CATEGORIES',((event.categories != null) ? event.categories.value : ""));
-							hashData.put('COMMENT',((event.comment != null) ? event.comment.value : ""));
-							hashData.put('CONTACT',((event.contact != null) ? event.contact.value : ""));
-							hashData.put('EXDATE',((event.exdate != null) ? event.exdate.value : ""));
-							hashData.put('EXRULE',((event.exrule != null) ? event.exrule.value : ""));
-							hashData.put('REQUEST-STATUS',((event.rstatus != null) ? event.rstatus.value : ""));
-							hashData.put('RELATED',((event.related != null) ? event.related.value : ""));
-							hashData.put('RESOURCES',((event.resources != null) ? event.resources.value : ""));
-							hashData.put('RDATE',((event.rdate != null) ? event.rdate.value : ""));
-							hashData.put('RRULE',((event.rrule != null) ? event.rrule.value : ""));
-							hashData.put('X-',((event.xprop != null) ? event.xprop.value : ""));
-							var agi = new CalendarAgendaItem(summary,startDt,endDt,false,hashData);
-							cal.addAgendaItem(agi);
-						}			
-					}
-				}	
+
+                                Calendar.loadICalData( cal, data );  // Majozi change
+
 			},
 			error: function(request,status,errorThrown) {
 				alert("iCal load error: Failure in requesting " + iCalUrl + ": " + errorThrown);
