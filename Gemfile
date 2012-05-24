@@ -119,3 +119,5 @@ gem 'fog'
 
 gem 'refinerycms-daily_quotes', '1.0', :path => 'vendor/engines'
 
+gem 'rest-client'
+gem 'refinerycms-event_calendars', '1.0', :path => 'vendor/engines'

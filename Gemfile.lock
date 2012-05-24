@@ -28,6 +28,7 @@ PATH
   remote: vendor/engines
   specs:
     refinerycms-daily_quotes (1.0)
+    refinerycms-event_calendars (1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -339,12 +340,14 @@ DEPENDENCIES
   refinerycms (~> 1.0.9)
   refinerycms-blog!
   refinerycms-daily_quotes (= 1.0)!
+  refinerycms-event_calendars (= 1.0)!
   refinerycms-galleries!
   refinerycms-i18n (~> 1.0.0)
   refinerycms-inquiries (~> 1.0)
   refinerycms-mailchimp
   refinerycms-news!
   refinerycms-page-images
+  rest-client
   rspec-rails
   ruby-prof
   sass
