@@ -637,6 +637,11 @@ img.image-align-right {
   text-transform: uppercase;
   letter-spacing: 0;
   color: black; }
+#event-calendar p {
+  margin: 0;
+  padding: 0 0 0.5em 0;
+  display: inline;
+  font-style: italic; }
 
 #billboard {
   background: url("../images/billboard.png") no-repeat;

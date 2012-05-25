@@ -5,6 +5,8 @@
       &emsp;
       %button#BtnPreviousMonth prev
       %button#BtnNextMonth next
+      &emsp;
+      %p#load-status loading events; please wait &hellip;
 
     #mycal
 
@@ -183,9 +185,11 @@
      */
     $("#BtnPreviousMonth").button();
     $("#BtnPreviousMonth").click(function() {
+      $("#load-status").show();
       jfcalplugin.showPreviousMonth("#mycal");
       var calDate = jfcalplugin.getCurrentDate("#mycal"); // returns Date object
       $("#current-month").text( fullMonth(calDate)  + " " + calDate.getFullYear() );
+      $("#load-status").hide();
       return false;
     });
 
@@ -194,9 +198,11 @@
      */
     $("#BtnNextMonth").button();
     $("#BtnNextMonth").click(function() {
+      $("#load-status").show();
       jfcalplugin.showNextMonth("#mycal");
       var calDate = jfcalplugin.getCurrentDate("#mycal"); // returns Date object
       $("#current-month").text( fullMonth(calDate)  + " " + calDate.getFullYear() );
+      $("#load-status").hide();
       return false;
     });
 

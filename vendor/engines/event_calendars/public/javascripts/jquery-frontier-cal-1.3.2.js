@@ -3206,7 +3206,7 @@
 				}
                                 // alert( "event data obtained" );
                                 Calendar.loadICalData( cal, data );  // Majozi change
-
+                                $("#load-status").hide();
 			},
 			error: function(request,status,errorThrown) {
 				alert("iCal load error: Failure in requesting " + iCalUrl + ": " + errorThrown);
