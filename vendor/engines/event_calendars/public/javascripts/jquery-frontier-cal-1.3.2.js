@@ -3088,6 +3088,15 @@
                 All the freebusy elements
                 alert("Freebusy: " + icalParser.ical.freebusys.length);
                 */
+
+                function eventArrayToString(eventArray) {
+                     eventString = "";
+                     for(k=0;eventArray.length > k;k++){
+                       eventString += eventArray[k].value + (k>1?", ":"");
+                     }
+                     return eventString;
+                }
+
                 if(icalParser.ical.events.length > 0){
                         var event; var summary;
                         var startYear; var startMonth; var startDay;
@@ -3153,8 +3162,8 @@
                                         hashData.put('REQUEST-STATUS',((event.rstatus != null) ? event.rstatus.value : ""));
                                         hashData.put('RELATED',((event.related != null) ? event.related.value : ""));
                                         hashData.put('RESOURCES',((event.resources != null) ? event.resources.value : ""));
-                                        hashData.put('RDATE',((event.rdate != null) ? event.rdate.value : ""));
-                                        hashData.put('RRULE',((event.rrule != null) ? event.rrule.value : ""));
+                                        hashData.put('RDATE',((event.rdate != null) ? eventArrayToString(event.rdate) : ""));
+                                        hashData.put('RRULE',((event.rrule != null) ? eventArrayToString(event.rrule) : ""));
                                         hashData.put('X-',((event.xprop != null) ? event.xprop.value : ""));
                                         var agi = new CalendarAgendaItem(summary,startDt,endDt,false,hashData);
                                         cal.addAgendaItem(agi);
