@@ -7,6 +7,14 @@ class EventCalendarsController < ApplicationController
     present(@page)
   end
 
+  def get_events
+    @events_data = EventCalendar.get_remote_events( 
+          RefinerySetting.find_or_set( 
+                :event_calendar_url, "event_calendar_url_required"
+          ) 
+    ) 
+  end
+
 protected
 
 end
