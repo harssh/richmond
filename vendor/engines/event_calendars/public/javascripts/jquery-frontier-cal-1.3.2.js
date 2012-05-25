@@ -3078,7 +3078,7 @@
                 icalParser.clear();
                 icalParser.parseIcal(data);
                 // alert("Events: " + data.length + "; " + data.slice(0,80));
-                alert("Events: " + icalParser.ical.events.length);
+                alert("Loaded Events: " + icalParser.ical.events.length);
                 /*				
                 All the vevent elements
                 All the vtodo elements
@@ -3128,8 +3128,8 @@
                                 if(endHour == ""){ endHour = "0"; }						
                                 if(endMin == ""){ endMin = "0"; }
                                 if(endSec == ""){ endSec = "0"; }						
-                                startDt = new Date(parseInt(startYear),parseInt(startMonth)-1,parseInt(startDay),parseInt(startHour)-1,parseInt(startMin),parseInt(startSec),0);
-                                endDt = new Date(parseInt(endYear),parseInt(endMonth)-1,parseInt(endDay),parseInt(endHour)-1,parseInt(endMin),parseInt(endSec),0);
+                                startDt = new Date(parseInt(startYear),parseInt(startMonth)-1,parseInt(startDay),parseInt(startHour),parseInt(startMin),parseInt(startSec),0);
+                                endDt = new Date(parseInt(endYear),parseInt(endMonth)-1,parseInt(endDay),parseInt(endHour),parseInt(endMin),parseInt(endSec),0);
                                 if(DateUtil.secondsDifferenceDirection(startDt,endDt) >= 0){
                                         // continue if start date is before or on end date
                                         var hashData = new Hashtable();

@@ -6,7 +6,7 @@
   end
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
-    resources :event_calendars, :only => :show do
+    resources :event_calendars, :except => :show do
       collection do
         post :update_positions
       end
