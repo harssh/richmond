@@ -3165,7 +3165,9 @@
                                         hashData.put('RDATE',((event.rdate != null) ? eventArrayToString(event.rdate) : ""));
                                         hashData.put('RRULE',((event.rrule != null) ? eventArrayToString(event.rrule) : ""));
                                         hashData.put('X-',((event.xprop != null) ? event.xprop.value : ""));
+
                                         var agi = new CalendarAgendaItem(summary,startDt,endDt,false,hashData);
+
                                         cal.addAgendaItem(agi);
                                 }			
                         }

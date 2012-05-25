@@ -82,7 +82,7 @@ var Hashtable = (function() {
 			if (kv === null) {
 				throw new Error("null is not a valid " + kvStr);
 			} else if (typeof kv == "undefined") {
-				throw new Error(kvStr + " must not be undefined");
+				throw new Error(kvStr + " must not be undefined(kv) " );
 			}
 		};
 	}
