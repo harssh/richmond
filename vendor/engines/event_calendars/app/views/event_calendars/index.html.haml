@@ -1,9 +1,12 @@
 - content_for :body_content_left do
-  #mycal
-    -# 
-      %h3 wild blue
-      %p
-        = EventCalendar.get_remote_events( RefinerySetting.find_or_set( :event_calendar_url, "event_calendar_url") )
+  #event-calendar
+    #toolbar.ui-widget-header.ui-corner-all{:style => "padding:3px; vertical-align: middle; white-space:nowrap; overflow: hidden;"}
+      %h1#current-month= Time.now.strftime("%B %Y")
+      &ensp;
+      %button#BtnPreviousMonth prev
+      %button#BtnNextMonth next
+
+    #mycal
 
   :javascript
     /**
@@ -30,13 +33,13 @@
     };
     function myAgendaDropHandler(eventObj){
             var agendaId = eventObj.data.agendaId;
-            var date = eventObj.data.calDayDate;		
-            var agendaItem = jfcalplugin.getAgendaItemById("#mycal",agendaId);		
+            var date = eventObj.data.calDayDate;    
+            var agendaItem = jfcalplugin.getAgendaItemById("#mycal",agendaId);    
             /**
             * alert("You dropped agenda item " + agendaItem.title + 
             *        " onto " + date.toString() + ". Here is where you can make an AJAX call to update your database.");
             */
-    };	
+    };  
     
     /**
      * Do something when dragging starts on agenda div
@@ -45,7 +48,7 @@
             // destroy our qtip tooltip
             if(divElm.data("qtip")){
                     divElm.qtip("destroy");
-            }	
+            }  
     };
 
     /**
@@ -91,7 +94,6 @@
             }
             displayData += "<b>Detail:</b> "      + data["DESCRIPTION"].replace(/\\n/g,", ")   + "<br>";
             displayData += "<b>Location:</b> "    + data["LOCATION"].replace(/\\,/g,", ")      + "<br>";
-            displayData += "<b>Contact:</b> "     + data["CONTACT"]                          + "<br>";
             displayData += "<b>URL:</b> "         + data["URL"]                              + "<br>";
 
             /**
@@ -106,7 +108,7 @@
                     position: {
                             corner: {
                                     tooltip: "bottomMiddle",
-                                    target: "topMiddle"			
+                                    target: "topMiddle"      
                             },
                             adjust: { 
                                     mouse: true,
@@ -133,6 +135,26 @@
             });
 
        };
+
+     /**
+     * Initialize previous month button
+     */
+    $("#BtnPreviousMonth").button();
+    $("#BtnPreviousMonth").click(function() {
+      jfcalplugin.showPreviousMonth("#mycal");
+      var calDate = jfcalplugin.getCurrentDate("#mycal"); // returns Date object
+      return false;
+    });
+
+    /**
+     * Initialize next month button
+     */
+    $("#BtnNextMonth").button();
+    $("#BtnNextMonth").click(function() {
+      jfcalplugin.showNextMonth("#mycal");
+      var calDate = jfcalplugin.getCurrentDate("#mycal"); // returns Date object
+      return false;
+    });
 
     jfcalplugin.loadICalSource("#mycal","#{get_events_event_calendars_path}","html"); 
 
