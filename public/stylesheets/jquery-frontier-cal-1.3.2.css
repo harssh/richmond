@@ -54,7 +54,7 @@ Style for day cells on the current month.
 .JFrontierCal .JFrontierCal-Day-Cell-Last{
 	background-color: #efefef;
 	color: #444444;	
-	background-image:url('images/dayCellCurrentMonth.png');
+	background-image:url('../images/dayCellCurrentMonth.png');
 	background-repeat:repeat-y;
 }
 /*
@@ -65,7 +65,7 @@ Style for previous month and next month day cells.
 .JFrontierCal .JFrontierCal-NextMonth-Day-Cell-Last {
 	background-color: #cccccc;
 	color: #999999;
-	background-image:url('images/dayCellOtherMonth.png');
+	background-image:url('../images/dayCellOtherMonth.png');
 	background-repeat:repeat-y;
 }
 /*
@@ -89,7 +89,7 @@ Style for current date day cell
 	background-color: #d6e2ff;
 	color: #444444;
 	/*background-image: none;*/
-	background-image:url('images/dayCellToday.png');
+	background-image:url('../images/dayCellToday.png');
 }
 /*
 Style for header cells (day name cells at top of calendar)

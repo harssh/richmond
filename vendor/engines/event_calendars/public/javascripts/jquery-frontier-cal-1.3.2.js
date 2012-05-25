@@ -3077,9 +3077,10 @@
         Calendar.loadICalData = function(cal, data) {
                 icalParser.clear();
                 icalParser.parseIcal(data);
+                // alert("Events: " + data.length + "; " + data.slice(0,80));
+                alert("Events: " + icalParser.ical.events.length);
                 /*				
                 All the vevent elements
-                alert("Events: " + icalParser.ical.events.length);
                 All the vtodo elements
                 alert("VToDos: " + icalParser.ical.todos.length);
                 All the journal elements
@@ -3174,7 +3175,7 @@
 		if(cal == null || iCalUrl == null){
 			return;
 		}
-		//alert("Load ical data: " + cal.getAgendaItemsCount());
+		// alert("Load ical data: " );
 		// make ajax call to get ical data
 		$.ajax({
 			url: iCalUrl,
@@ -3188,7 +3189,7 @@
 					alert("iCal load error: Returned data was null or empty string.\n\nSource, " + iCalUrl);
 					return;
 				}
-
+                                // alert( "event data obtained" );
                                 Calendar.loadICalData( cal, data );  // Majozi change
 
 			},

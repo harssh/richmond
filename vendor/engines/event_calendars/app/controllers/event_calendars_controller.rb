@@ -13,6 +13,8 @@ class EventCalendarsController < ApplicationController
                 :event_calendar_url, "event_calendar_url_required"
           ) 
     ) 
+    puts "********** events data ***************"
+    render :layout => false
   end
 
 protected
