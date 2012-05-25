@@ -79,12 +79,25 @@ var Hashtable = (function() {
 
 	function createKeyValCheck(kvStr) {
 		return function(kv) {
+                   kvResult = kv
 			if (kv === null) {
-				throw new Error("null is not a valid " + kvStr);
+			   kvResult = "__null";
 			} else if (typeof kv == "undefined") {
-				throw new Error(kvStr + " must not be undefined(kv) " );
+			   kvResult = "__undefined";
 			}
+                   return kvResult;
 		};
+         /**
+          * majozi changes: replaced original code (below) with above ^^^^^
+	  *	return function(kv) {
+	  *		if (kv === null) {
+	  *			throw new Error("[HashTable] null is not a valid " + kvStr);
+	  *		} else if (typeof kv == "undefined") {
+	  *			throw new Error("[HashTable] encountered an undefined " + kvStr );
+	  *		}
+	  *	};
+          */
+
 	}
 
 	var checkKey = createKeyValCheck("key"), checkValue = createKeyValCheck("value");
@@ -214,8 +227,9 @@ var Hashtable = (function() {
 		var equalityFunction = (typeof equalityFunctionParam == FUNCTION) ? equalityFunctionParam : null;
 
 		this.put = function(key, value) {
-			checkKey(key);
-			checkValue(value);
+			key = checkKey(key);  // majozi change: key = 
+			value = checkValue(value);  // majozi change: value = 
+
 			var hash = hashingFunction(key), bucket, bucketEntry, oldValue = null;
 
 			// Check if a bucket exists for the bucket key
