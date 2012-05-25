@@ -55,6 +55,11 @@
             //alert("drag stop");
     };
 
+    function timeClean(time) {
+      var str = time.toLocaleTimeString();
+      return str.replace(/:00$/,"")
+    };
+
     /**
      * Custom tooltip - use any tooltip library you want to display the agenda data.
      *
@@ -81,11 +86,20 @@
             if(allDay){
                     displayData += "(All day event)<br><br>";
             }else{
-                    displayData += "<b>Starts:</b> " + startDate + "<br>" + "<b>Ends:</b> " + endDate + "<br><br>";
+                    displayData += "<b>Date:</b> "   + startDate.toDateString()  + "<br>";
+                    displayData += "<b>Starts:</b> " + timeClean(startDate) + "<br>" + "<b>Ends:</b> " + timeClean(endDate) + "<br><br>";
             }
-            for (var propertyName in data) {
-                    displayData += "<b>" + propertyName + ":</b> " + data[propertyName] + "<br>"
-            }
+            displayData += "<b>Detail:</b> "      + data["DESCRIPTION"].replace(/\\n/g,", ")   + "<br>";
+            displayData += "<b>Location:</b> "    + data["LOCATION"].replace(/\\,/g,", ")      + "<br>";
+            displayData += "<b>Contact:</b> "     + data["CONTACT"]                          + "<br>";
+            displayData += "<b>URL:</b> "         + data["URL"]                              + "<br>";
+
+            /**
+             * for (var propertyName in data) {
+             *       displayData += "<b>" + propertyName + ":</b> " + data[propertyName] + "<br>"
+             *}
+             */
+
             // apply tooltip
             divElm.qtip({
                     content: displayData,
@@ -108,10 +122,10 @@
                     },
                     style: {
                             border: {
-                                    width: 5,
-                                    radius: 10
+                                    width: 2,
+                                    radius: 5
                             },
-                            padding: 10, 
+                            padding: 5, 
                             textAlign: "left",
                             tip: true,
                             name: "dark"

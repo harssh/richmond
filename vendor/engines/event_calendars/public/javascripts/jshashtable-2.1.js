@@ -81,9 +81,9 @@ var Hashtable = (function() {
 		return function(kv) {
                    kvResult = kv
 			if (kv === null) {
-			   kvResult = "__null";
+			   kvResult = "";
 			} else if (typeof kv == "undefined") {
-			   kvResult = "__undefined";
+			   kvResult = "";
 			}
                    return kvResult;
 		};

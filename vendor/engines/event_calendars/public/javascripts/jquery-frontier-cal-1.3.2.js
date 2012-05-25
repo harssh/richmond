@@ -3078,7 +3078,7 @@
                 icalParser.clear();
                 icalParser.parseIcal(data);
                 // alert("Events: " + data.length + "; " + data.slice(0,80));
-                alert("Loaded Events: " + icalParser.ical.events.length);
+                // alert("Loaded Events: " + icalParser.ical.events.length);
                 /*				
                 All the vevent elements
                 All the vtodo elements
