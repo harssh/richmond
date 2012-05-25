@@ -2,7 +2,7 @@
   #event-calendar
     #toolbar.ui-widget-header.ui-corner-all{:style => "padding:3px; vertical-align: middle; white-space:nowrap; overflow: hidden;"}
       %h1#current-month= Time.now.strftime("%B %Y")
-      &ensp;
+      &emsp;
       %button#BtnPreviousMonth prev
       %button#BtnNextMonth next
 
@@ -26,7 +26,7 @@
     
     function myDayClickHandler(eventObj){
             var date = eventObj.data.calDayDate;
-            alert("You clicked day " + date.toDateString());
+            // alert("You clicked day " + date.toDateString());
     };
     function myAgendaClickHandler (eventObj){
             var agendaId = eventObj.data.agendaId;
@@ -58,9 +58,51 @@
             //alert("drag stop");
     };
 
-    function timeClean(time) {
-      var str = time.toLocaleTimeString();
-      return str.replace(/:00$/,"")
+    var month=new Array();
+    month[0]="January";
+    month[1]="February";
+    month[2]="March";
+    month[3]="April";
+    month[4]="May";
+    month[5]="June";
+    month[6]="July";
+    month[7]="August";
+    month[8]="September";
+    month[9]="October";
+    month[10]="November";
+    month[11]="December";
+
+    function fullMonth(date) {
+      return month[ date.getMonth()];
+    };
+
+
+
+    function prettyTime(date) {
+      if(date == null){
+        return "";
+      }
+      
+      var c = ":";
+      var h = date.getHours();
+      var m = date.getMinutes();
+      var ampm = "am";
+
+      if(m == 0){
+        // don't show minutes if on the hour
+        m = "";
+        c = "";
+      }else if(m < 10){
+        m = "0" + m;
+      }
+      // covert 24-hour to 12-hour with am/pm
+      if(h == 0){
+        h = 12;
+      }else if(h > 12){
+        h = h-12;
+        ampm = "pm"
+      }
+      return h + c + m + ampm;
     };
 
     /**
@@ -90,7 +132,7 @@
                     displayData += "(All day event)<br><br>";
             }else{
                     displayData += "<b>Date:</b> "   + startDate.toDateString()  + "<br>";
-                    displayData += "<b>Starts:</b> " + timeClean(startDate) + "<br>" + "<b>Ends:</b> " + timeClean(endDate) + "<br><br>";
+                    displayData += "<b>Starts:</b> " + prettyTime(startDate) + "<br>" + "<b>Ends:</b> " + prettyTime(endDate) + "<br><br>";
             }
             displayData += "<b>Detail:</b> "      + data["DESCRIPTION"].replace(/\\n/g,", ")   + "<br>";
             displayData += "<b>Location:</b> "    + data["LOCATION"].replace(/\\,/g,", ")      + "<br>";
@@ -143,6 +185,7 @@
     $("#BtnPreviousMonth").click(function() {
       jfcalplugin.showPreviousMonth("#mycal");
       var calDate = jfcalplugin.getCurrentDate("#mycal"); // returns Date object
+      $("#current-month").text( fullMonth(calDate)  + " " + calDate.getFullYear() );
       return false;
     });
 
@@ -153,6 +196,7 @@
     $("#BtnNextMonth").click(function() {
       jfcalplugin.showNextMonth("#mycal");
       var calDate = jfcalplugin.getCurrentDate("#mycal"); // returns Date object
+      $("#current-month").text( fullMonth(calDate)  + " " + calDate.getFullYear() );
       return false;
     });
 

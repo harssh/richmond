@@ -3070,6 +3070,10 @@
          *
         */
 
+        Calendar.prettyTime = function(mydate) {
+          return DateUtil.getAgendaDisplayTime(mydate);
+        };
+
 
         /** loads iCal data from a data block
 	 * @param cal - Calendar object - A Frontier Calendar.
