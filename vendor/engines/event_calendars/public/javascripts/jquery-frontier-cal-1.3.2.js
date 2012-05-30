@@ -3526,8 +3526,10 @@
 		}else if(h > 12){
 			h = h-12;
 			ampm = "pm"
-		}
-		return h + c + m + ampm;
+                }else if(h == 12){
+                  ampm = "pm"
+                }
+ 		return h + c + m + ampm;
 	};
 	
 	/**
