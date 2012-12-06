@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+ruby "1.9.3"
+
 gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
@@ -10,7 +12,7 @@ group :linux do
 end
 
 group :mac do
-  gem 'sqlite3-ruby', ">= 1.3.3", :require => 'sqlite3'
+  gem 'sqlite3', ">= 1.3.3", :require => 'sqlite3'
 end
 
 
@@ -80,7 +82,7 @@ end
 
 group :development do
   gem 'heroku'
-  gem 'mongrel', "1.2.0.pre2"
+  gem 'thin'
   
   # RSpec
   gem 'rspec-rails'
