@@ -12,7 +12,7 @@ group :linux do
 end
 
 group :mac do
-  gem 'sqlite3', ">= 1.3.3", :require => 'sqlite3'
+  gem 'sqlite3', :require => 'sqlite3'
 end
 
 
@@ -81,7 +81,6 @@ group :test do
 end
 
 group :development do
-  gem 'heroku'
   gem 'thin'
   
   # RSpec
@@ -91,8 +90,8 @@ end
 # END REFINERY CMS ============================================================
 
 # USER DEFINED
-gem 'haml'
-gem 'sass'
+gem 'haml', '3.1.4'
+gem 'sass', '3.1.12'
 
 #  gem 'dalli'   # used for heroku memcache
 
@@ -100,12 +99,12 @@ gem 'sass'
 # gem 'refinerycms-portfolio',  '~> 0.9'
 # gem 'refinerycms-theming',    '~> 0.9'
 
-gem 'refinerycms-inquiries',    '~> 1.0'
-gem 'refinerycms-page-images'
+gem 'refinerycms-inquiries',    '1.0.1'
+gem 'refinerycms-page-images', '1.0.4'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
-gem 'refinerycms-mailchimp'
+gem 'refinerycms-mailchimp', '0.0.2'
 
 # gem 'banner-rotator', :git => 'git@github.com:AlexisMasters/banner-rotator.git', :branch => 'master'
 # gem 'banner-rotator', :git => 'git://github.com/dsaronin/banner-rotator.git', :branch => 'master'
@@ -113,13 +112,13 @@ gem 'refinerycms-mailchimp'
 # Add i18n support (optional, you can remove this if you really want to).
 gem 'refinerycms-i18n',         '~> 1.0.0'
 
-gem "recaptcha", :require => "recaptcha/rails"
-gem 'seo_meta'
-gem 'fog'
+gem "recaptcha", '0.3.4', :require => "recaptcha/rails"
+gem 'seo_meta', '1.1.1'
+gem 'fog', '1.1.2'
 
 # END USER DEFINED
 
 gem 'refinerycms-daily_quotes', '1.0', :path => 'vendor/engines'
 
-gem 'rest-client'
+gem 'rest-client', '1.6.7'
 gem 'refinerycms-event_calendars', '1.0', :path => 'vendor/engines'
