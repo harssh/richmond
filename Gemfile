@@ -12,7 +12,7 @@ group :linux do
 end
 
 group :mac do
-  gem 'sqlite3', :require => 'sqlite3'
+  # gem 'sqlite3', :require => 'sqlite3'
 end
 
 
@@ -49,34 +49,34 @@ gem 'refinerycms',              '~> 1.0.9'
 group :test do
 
   # Autotest
-  gem 'ZenTest'
-  gem 'autotest'
-  gem 'autotest-inotify'
-  gem 'autotest-rails'
-  gem 'rb-inotify'
-  gem 'autotest-notification'
-  gem 'redgreen'
+#   gem 'ZenTest'
+#   gem 'autotest'
+#   gem 'autotest-inotify'
+#   gem 'autotest-rails'
+#   gem 'rb-inotify'
+#   gem 'autotest-notification'
+#   gem 'redgreen'
 
   # Cucumber
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'launchy'
-  gem 'gherkin'
-  gem 'spork'       unless Bundler::WINDOWS
-  gem 'rack-test'
-  gem 'json_pure'
+#   gem 'capybara'
+#   gem 'database_cleaner'
+#   gem 'cucumber-rails'
+#   gem 'launchy'
+#   gem 'gherkin'
+#   gem 'spork'       unless Bundler::WINDOWS
+#   gem 'rack-test'
+#   gem 'json_pure'
 
   # Factory Girl
-  gem 'factory_girl'
-  gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
+#   gem 'factory_girl'
+#   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
 
   # other
-  gem 'tzinfo'
-  gem 'mail'
-  gem 'columnize'
-  gem 'thor'
-  gem 'taps'
+#   gem 'tzinfo'
+#   gem 'mail'
+#   gem 'columnize'
+#   gem 'thor'
+#   gem 'taps'
 
 end
 
@@ -84,7 +84,7 @@ group :development do
   gem 'thin'
   
   # RSpec
-  gem 'rspec-rails'
+  # gem 'rspec-rails'
 
 end
 # END REFINERY CMS ============================================================
