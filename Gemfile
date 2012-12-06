@@ -4,6 +4,8 @@ ruby "1.9.3"
 
 gem 'rails', '3.0.10'
 
+gem 'thin'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -81,7 +83,6 @@ group :test do
 end
 
 group :development do
-  gem 'thin'
   
   # RSpec
   # gem 'rspec-rails'
